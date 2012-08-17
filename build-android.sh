@@ -182,16 +182,17 @@ case "$HOST_OS" in
         Platfrom=linux-x86
 esac
 
+AndroidPlatform="android-14"
 
 case "$NDK_RN" in
 	4)
-s		CXXPATH=$AndroidNDKRoot/build/prebuilt/$Platfrom/arm-eabi-4.4.0/bin/arm-eabi-g++
-		CXXFLAGS=-I$AndroidNDKRoot/build/platforms/android-8/arch-arm/usr/include
+		CXXPATH=$AndroidNDKRoot/build/prebuilt/$Platfrom/arm-eabi-4.4.0/bin/arm-eabi-g++
+		CXXFLAGS=-I$AndroidNDKRoot/build/platforms/$AndroidPlatform/arch-arm/usr/include
 		TOOLSET=gcc-androidR4
 		;;
 	5)
 		CXXPATH=$AndroidNDKRoot/toolchains/arm-linux-androideabi-4.4.3/prebuilt/$Platfrom/bin/arm-linux-androideabi-g++
-		CXXFLAGS="-I$AndroidNDKRoot/platforms/android-8/arch-arm/usr/include \
+		CXXFLAGS="-I$AndroidNDKRoot/platforms/$AndroidPlatform/arch-arm/usr/include \
 				-I$AndroidNDKRoot/sources/cxx-stl/gnu-libstdc++/include \
 				-I$AndroidNDKRoot/sources/cxx-stl/gnu-libstdc++/libs/armeabi/include \
 				-I$AndroidNDKRoot/sources/wchar-support/include"
@@ -199,7 +200,7 @@ s		CXXPATH=$AndroidNDKRoot/build/prebuilt/$Platfrom/arm-eabi-4.4.0/bin/arm-eabi-
 		;;
 	7)
 		CXXPATH=$AndroidNDKRoot/toolchains/arm-linux-androideabi-4.6.3/prebuilt/$Platfrom/bin/arm-linux-androideabi-g++
-		CXXFLAGS="-I$AndroidNDKRoot/platforms/android-9/arch-arm/usr/include \
+		CXXFLAGS="-I$AndroidNDKRoot/platforms/$AndroidPlatform/arch-arm/usr/include \
 				-I$AndroidNDKRoot/sources/cxx-stl/gnu-libstdc++/include/4.6.3 \
 				-I$AndroidNDKRoot/sources/cxx-stl/gnu-libstdc++/libs/armeabi/4.6.3/include \
 				-I$AndroidNDKRoot/sources/crystax/include"
@@ -208,12 +209,12 @@ s		CXXPATH=$AndroidNDKRoot/build/prebuilt/$Platfrom/arm-eabi-4.4.0/bin/arm-eabi-
 	8)
 		if [ $NDK8B == 1 ] ; then
 			CXXPATH=$AndroidNDKRoot/toolchains/arm-linux-androideabi-4.6/prebuilt/$Platfrom/bin/arm-linux-androideabi-g++
-			CXXFLAGS="-I$AndroidNDKRoot/platforms/android-9/arch-arm/usr/include \
+			CXXFLAGS="-I$AndroidNDKRoot/platforms/$AndroidPlatform/arch-arm/usr/include \
 					-I$AndroidNDKRoot/sources/cxx-stl/gnu-libstdc++/4.6/include \
 					-I$AndroidNDKRoot/sources/cxx-stl/gnu-libstdc++/4.6/libs/armeabi/include"
 		else
 			CXXPATH=$AndroidNDKRoot/toolchains/arm-linux-androideabi-4.4.3/prebuilt/$Platfrom/bin/arm-linux-androideabi-g++
-			CXXFLAGS="-I$AndroidNDKRoot/platforms/android-9/arch-arm/usr/include \
+			CXXFLAGS="-I$AndroidNDKRoot/platforms/$AndroidPlatform/arch-arm/usr/include \
 					-I$AndroidNDKRoot/sources/cxx-stl/gnu-libstdc++/include \
 					-I$AndroidNDKRoot/sources/cxx-stl/gnu-libstdc++/libs/armeabi/include"
 		fi
