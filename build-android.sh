@@ -331,7 +331,7 @@ env PATH=`dirname $CXXPATH`:$PATH \
  AndroidNDKRoot=$AndroidNDKRoot NO_BZIP2=1 \
  ./bjam toolset=$TOOLSET -q \
  cxxflags="$CXXFLAGS" \
- link=static,shared threading=multi --layout=versioned install 2>&1 | tee -a $PROGDIR/build.log
+ link=static threading=multi --layout=versioned install 2>&1 | tee -a $PROGDIR/build.log
 if [ $? != 0 ] ; then
 	dump "ERROR: Failed to build boost for android!"
 	exit 1
