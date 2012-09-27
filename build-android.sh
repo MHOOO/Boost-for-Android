@@ -207,7 +207,7 @@ case "$NDK_RN" in
 		TOOLSET=gcc-androidR7
 		;;
 	8)
-		if [ $NDK8B == 1 ] ; then
+		if [ $NDK8B = 1 ] ; then
 			CXXPATH=$AndroidNDKRoot/toolchains/arm-linux-androideabi-4.6/prebuilt/$Platfrom/bin/arm-linux-androideabi-g++
 			CXXFLAGS="-I$AndroidNDKRoot/platforms/$AndroidPlatform/arch-arm/usr/include \
 					-I$AndroidNDKRoot/sources/cxx-stl/gnu-libstdc++/4.6/include \
@@ -218,6 +218,8 @@ case "$NDK_RN" in
 					-I$AndroidNDKRoot/sources/cxx-stl/gnu-libstdc++/include \
 					-I$AndroidNDKRoot/sources/cxx-stl/gnu-libstdc++/libs/armeabi/include"
 		fi
+                LDFLAGS="-L$AndroidNDKRoot/platforms/$AndroidPlatform/arch-arm/usr/lib"
+                echo "LDFLAGS are: $LDFLAGS"
 		TOOLSET=gcc-androidR8
 		;;
 	*)
@@ -330,8 +332,8 @@ cd $BOOST_DIR
 env PATH=`dirname $CXXPATH`:$PATH \
  AndroidNDKRoot=$AndroidNDKRoot NO_BZIP2=1 \
  ./bjam toolset=$TOOLSET -q \
- cxxflags="$CXXFLAGS" \
- link=static threading=multi --layout=versioned install 2>&1 | tee -a $PROGDIR/build.log
+    cxxflags="$CXXFLAGS" \
+    link=static threading=multi --layout=versioned install 2>&1 | tee -a $PROGDIR/build.log
 if [ $? != 0 ] ; then
 	dump "ERROR: Failed to build boost for android!"
 	exit 1
